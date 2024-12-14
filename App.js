@@ -1,20 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { PeopleProvider } from './contexts/PeopleContext';
+import { NavigationContainer } from '@react-navigation/native';
+import PeopleScreen from './screens/PeopleScreen';
+import AddPersonScreen from './screens/AddPersonScreen';
+import IdeaScreen from './screens/IdeaScreen';
+import AddIdeaScreen from './screens/AddIdeaScreen';
+
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <PeopleProvider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="People">
+          <Stack.Screen name="People" component={PeopleScreen} />
+          <Stack.Screen name="AddPerson" component={AddPersonScreen} />
+          <Stack.Screen name="Ideas" component={IdeaScreen} />
+          <Stack.Screen name="AddIdea" component={AddIdeaScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </PeopleProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
