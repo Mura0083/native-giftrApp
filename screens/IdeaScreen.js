@@ -30,7 +30,13 @@ export default function IdeaScreen({ navigation }) {
       }
     };
     fetchIdeas();
-  }, [personId]);
+
+    const unsubscribe = navigation.addListener('beforeRemove', (e) => {
+      e.preventDefault();
+      navigation.navigate('People');
+    });
+    return unsubscribe;
+  }, [personId, people, navigation]);
 
   const handleDelete = async (ideaId) => {
     try {
@@ -102,30 +108,30 @@ export default function IdeaScreen({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create ({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     padding: 20,
   },
   title: {
     fontSize: 24,
     marginBottom: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   noIdeas: {
     fontSize: 18,
-    textAlign: 'center',
-    color: 'gray',
+    textAlign: "center",
+    color: "gray",
     marginTop: 20,
   },
   ideaContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     padding: 10,
     marginBottom: 20,
-    backgroundColor: '#f9f9f9',
+    backgroundColor: "#f9f9f9",
     borderRadius: 5,
     elevation: 2,
   },
@@ -140,43 +146,43 @@ const styles = StyleSheet.create ({
     marginHorizontal: 10,
   },
   deleteButton: {
-    backgroundColor: 'red',
+    backgroundColor: "red",
     paddingHorizontal: 10,
     paddingVertical: 5,
     borderRadius: 5,
-    alignItems: 'center',
+    alignItems: "center",
   },
   deleteText: {
-    color: 'white',
-    fontWeight: 'bold',
+    color: "white",
+    fontWeight: "bold",
   },
   headerNav: {
     marginRight: 16,
-    backgroundColor: 'blue',
+    backgroundColor: "blue",
     paddingVertical: 5,
     paddingHorizontal: 10,
   },
   headerText: {
-    fontWeight: 'bold',
-    color: 'blue',
+    fontWeight: "bold",
+    color: "blue",
   },
   fab: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 20,
     right: 20,
     width: 50,
     height: 50,
     borderRadius: 25,
-    backgroundColor: 'blue',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "blue",
+    justifyContent: "center",
+    alignItems: "center",
   },
   fabText: {
     fontSize: 24,
-    fontWeight: 'bold',
-    color: 'white',
+    fontWeight: "bold",
+    color: "white",
   },
   errorButton: {
-    backgroundColor: 'red',
+    backgroundColor: "red",
   },
-})
+});

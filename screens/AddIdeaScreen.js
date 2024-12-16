@@ -44,7 +44,7 @@ export default function AddIdeaScreen() {
   };
 
   const handleSave = async () => {
-    if (!text.trim() || !image) {
+    if (!text.trim()) {
       setModalConfig({
         title: 'Validation Error',
         message: 'Please enter both a gift idea and take a picture.',
@@ -114,7 +114,7 @@ export default function AddIdeaScreen() {
         placeholder="Enter a gift idea"
       />
 
-      <View style={styles.imageContainer}>
+      {/* <View style={styles.imageContainer}>
         {image ? (
           <Image source={{ uri: image }} style={{ width: imageWidth, height: imageHeight }} />
         ) : (
@@ -127,7 +127,7 @@ export default function AddIdeaScreen() {
         <Pressable style={styles.cameraButton} onPress={takePicture}>
           <Ionicons name="camera" size={24} color="white" />
         </Pressable>
-      </View>
+      </View> */}
 
       <View style={styles.buttonContainer}>
         <Pressable style={styles.saveButton} onPress={handleSave}>
